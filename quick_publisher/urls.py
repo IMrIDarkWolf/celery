@@ -21,6 +21,7 @@ from main.views import home, verify
 urlpatterns = [
     path('', home, name='home'),
     path('admin/', admin.site.urls),
+    re_path('verify/(?P<uuid>[a-z0-9\-]+)/', verify, name='verify'),
     re_path('(?P<slug>[a-zA-Z0-9\-_]+)', view_post, name='view_post'),
-    re_path('^verify/(?P<uuid>[a-z0-9\-]+)/', verify, name='verify')
+
 ]

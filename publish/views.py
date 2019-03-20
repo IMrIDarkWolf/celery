@@ -4,10 +4,12 @@ from .models import Post
 
 
 def view_post(request, slug):
-    slug = slug
     try:
         post = Post.objects.get(slug=slug)
     except Post.DoesNotExist:
         raise Http404("Poll does not exist")
 
-    return render(request, 'post.html', locals())
+    post.view_count += 1
+    post.save()
+
+    return render(request, 'post.html', context={'post': post})
